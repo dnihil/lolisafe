@@ -48,7 +48,9 @@ self.higher = (user, target) => {
 self.mapPermissions = user => {
   const map = {}
   Object.keys(self.permissions).forEach(group => {
-    map[group] = self.is(user, group)
+    if (self.is(user, group)) {
+      map[group] = self.is(user, group)
+    }
   })
   return map
 }

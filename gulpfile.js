@@ -140,9 +140,17 @@ gulp.task('build:js', () => {
     .pipe(gulp.dest(dist))
 })
 
-gulp.task('build', gulp.parallel('build:sass', 'build:css', 'build:fontello', 'build:js'))
+gulp.task('build:openapi-spec', cb => {
+  exec('node ./scripts/build-openapi-spec.js', (error, stdout, stderr) => {
+    if (stdout) process.stdout.write(stdout)
+    if (stderr) process.stderr.write(stderr)
+    cb(error)
+  })
+})
 
-/** TASKS: VERSION STRINGS */
+gulp.task('build', gulp.parallel('build:sass', 'build:css', 'build:fontello', 'build:js', 'build:openapi-spec'))
+
+/** TASKS: EXEC */
 
 gulp.task('exec:bump-versions', cb => {
   exec('node ./scripts/bump-versions.js 1', (error, stdout, stderr) => {
@@ -192,6 +200,7 @@ gulp.task('nodemon', cb => {
     watch: [
       'controllers/',
       'routes/',
+      'scripts/build-openapi-spec.js',
       'views/_globals.njk',
       'views/_layout.njk',
       'views/album.njk',
@@ -200,6 +209,7 @@ gulp.task('nodemon', cb => {
       'lolisafe.js'
     ],
     ext: 'js',
+    tasks: ['build:openapi-spec'],
     done: cb
   })
 })

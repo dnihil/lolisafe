@@ -8,8 +8,8 @@ const utils = require('./utilsController')
 const ClientError = require('./utils/ClientError')
 const config = require('./../config')
 
-// Don't forget to update min/max length of text inputs in auth.njk
-// when changing these values.
+// Don't forget to update min/max length of text inputs in views/auth.njk,
+// and OpenAPI spec in routes/api.js when changing these values.
 const self = {
   user: {
     min: 4,

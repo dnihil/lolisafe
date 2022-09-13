@@ -93,7 +93,7 @@ module.exports = {
     as any changes in said directory will be detected live.
     You may even add or remove pages while lolisafe is running.
   */
-  pages: ['home', 'auth', 'dashboard', 'faq'],
+  pages: ['home', 'auth', 'dashboard', 'faq', 'apidocs'],
 
   /*
     This will load public/libs/cookieconsent/cookieconsent.min.{css,js} on homepage (configured from home.js).

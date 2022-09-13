@@ -1,0 +1,46 @@
+{%- import '_globals.njk' as globals with context -%}
+
+{# Set root domain here to inherit values from config file #}
+{%- set root = utils.conf.homeDomain or utils.conf.domain -%}
+
+{% set metaTitle = "API Docs" %}
+{% set metaUrl = '/api-docs' %}
+
+{%- set title -%}
+{%- if metaTitle -%}
+{{ metaTitle + ' | ' + globals.name }}
+{%- else -%}
+{{ globals.name + ' – ' + globals.motto }}
+{%- endif %}
+{%- endset -%}
+
+{%- set url = root + (metaUrl or '') -%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>{{ title }}</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="libs/swagger-ui/swagger-ui.css{{ versions[3] }}">
+    <link rel="stylesheet" type="text/css" href="libs/swagger-ui/index.css{{ versions[3] }}">
+    <link rel="stylesheet" type="text/css" href="css/apidocs.css{{ versions[1] }}">
+
+    <!-- Icons, configs, etcetera -->
+    <link rel="icon" type="image/png" href="{{ root }}/libs/swagger-ui/favicon-32x32.png{{ versions[2] }}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{{ root }}/libs/swagger-ui/favicon-16x16.png{{ versions[2] }}" sizes="16x16">
+  </head>
+
+  <body>
+    <!-- Swagger UI container -->
+    <div id="swagger-ui"></div>
+
+    <!-- Scripts -->
+    <script src="libs/swagger-ui/swagger-ui-bundle.js{{ versions[3] }}" charset="utf-8"></script>
+    <script src="libs/swagger-ui/swagger-ui-standalone-preset.js{{ versions[3] }}" charset="utf-8"></script>
+    {# We assign an ID for this so that the script can find out its own data tags #}
+    <script id="mainScript" src="js/apidocs.js{{ versions[1] }}" data-name="{{ name }}" charset="utf-8"></script>
+  </body>
+</html>
