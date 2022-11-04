@@ -59,7 +59,7 @@
     "range-parser": "~1.2.1",
     "rate-limiter-flexible": "~2.4.1",
     "search-query-parser": "~1.6.0",
-    "sharp": "~0.30.7",
+    "sharp": "~0.31.2",
     "systeminformation": "~5.12.11"
   },
   "devDependencies": {
